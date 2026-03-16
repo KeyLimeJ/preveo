@@ -1,0 +1,554 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Preveo &mdash; Sign In</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600&family=DM+Mono:wght@300;400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --s0:#F6F8FC;--s1:#FFFFFF;
+  --slate:#1E2D4A;--slate-deep:#141E33;--slate-mid:#2A3D62;
+  --slate-pale:#EBF0FA;--slate-rule:#C8D2E8;
+  --amber:#C87820;--amber-light:#E8960A;--amber-bg:#FDF5EA;--amber-rule:#EDD390;
+  --t0:#0E1420;--t1:#3A4560;--t2:#7080A0;--t3:#B8C4D4;
+  --rule:#E4EAF4;
+  --green:#16A34A;--green-bg:#F0FDF4;
+  --signal:#B84020;--signal-bg:#FBF0EC;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{font-family:'Outfit',sans-serif;font-weight:300;background:var(--slate-deep);color:var(--t0);-webkit-font-smoothing:antialiased}
+
+/* LAYOUT */
+.page{display:grid;grid-template-columns:1fr;height:100vh;width:100vw}
+
+/* LEFT */
+.left{display:none}
+.ldots{position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(circle,rgba(200,183,140,.16) 1px,transparent 1px);background-size:28px 28px}
+.lglow{position:absolute;bottom:-18%;right:-8%;width:56%;height:56%;background:radial-gradient(circle,rgba(200,120,32,.10) 0%,transparent 62%);pointer-events:none}
+.lglow2{position:absolute;top:-10%;left:-12%;width:50%;height:50%;background:radial-gradient(circle,rgba(42,61,98,.50) 0%,transparent 65%);pointer-events:none}
+.horizon{position:absolute;bottom:18px;left:0;right:0;height:1px;background:linear-gradient(to right,transparent 4%,rgba(200,120,32,.28) 22%,rgba(200,120,32,.28) 78%,transparent 96%);z-index:1}
+
+.left-logo{display:flex;align-items:center;gap:11px;position:relative;z-index:3;flex-shrink:0;animation:up .48s ease both}
+.wm{font-size:20px;font-weight:600;letter-spacing:-0.03em;color:#F4F6FA;line-height:1}
+.wm .veo{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:var(--slate-rule);letter-spacing:0}
+
+.left-body{flex:1;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:3;animation:up .56s .06s ease both}
+
+.eyebrow{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.30em;text-transform:uppercase;color:var(--amber);margin-bottom:22px}
+
+.headline{font-size:clamp(28px,2.6vw,42px);font-weight:600;letter-spacing:-0.038em;color:#F4F6FA;line-height:1.1;margin-bottom:14px}
+.headline em{font-style:normal;color:rgba(255,255,255,.30)}
+.headline .serif{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:var(--amber);letter-spacing:0}
+
+.subline{font-size:14.5px;font-weight:300;color:rgba(244,246,250,.44);line-height:1.72;max-width:400px;margin-bottom:32px}
+
+/* Benefits */
+.benefits{display:flex;flex-direction:column;gap:16px;margin-bottom:32px}
+.benefit{display:flex;align-items:flex-start;gap:13px}
+.bicon{width:32px;height:32px;border-radius:8px;background:rgba(200,120,32,.11);border:1px solid rgba(200,120,32,.22);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;color:var(--amber)}
+.bicon svg{width:13px;height:13px}
+.btitle{font-size:13px;font-weight:500;color:#F4F6FA;letter-spacing:-0.01em;margin-bottom:2px}
+.bdesc{font-size:12px;font-weight:300;color:rgba(244,246,250,.38);line-height:1.55}
+
+/* Testimonial */
+.tcard{background:rgba(255,255,255,.038);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:18px 20px;margin-bottom:0;position:relative}
+.tcard::before{content:'\201C';position:absolute;top:-4px;left:16px;font-size:48px;line-height:1;font-family:'Instrument Serif',serif;color:var(--amber);opacity:.45}
+.tquote{font-size:13px;font-weight:300;color:rgba(244,246,250,.58);line-height:1.68;padding-top:16px;margin-bottom:14px}
+.tauthor{display:flex;align-items:center;gap:10px}
+.tavatar{width:28px;height:28px;border-radius:50%;background:var(--slate-mid);display:flex;align-items:center;justify-content:center;font-size:9.5px;font-weight:500;color:rgba(255,255,255,.7);flex-shrink:0}
+.tname{font-size:12px;font-weight:500;color:rgba(244,246,250,.68)}
+.trole{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.04em;color:rgba(244,246,250,.26);margin-top:2px}
+
+/* Stats */
+.stats{display:flex;gap:0;position:relative;z-index:3;flex-shrink:0;margin-top:28px;animation:up .6s .14s ease both}
+.stat{flex:1;padding:14px 0;border-top:1px solid rgba(255,255,255,.07);padding-right:12px}
+.sv{font-family:'DM Mono',monospace;font-size:19px;font-weight:400;color:#F4F6FA;letter-spacing:-0.02em;line-height:1}
+.sv span{color:var(--amber)}
+.sl{font-size:10.5px;font-weight:300;color:rgba(244,246,250,.26);margin-top:3px}
+
+/* RIGHT */
+.right{background:var(--s0);display:flex;flex-direction:column;overflow:hidden;animation:fadeIn .36s ease both}
+.rnav{
+  height:52px;flex-shrink:0;
+  display:flex;align-items:center;
+  padding:0 40px;
+  border-bottom:1px solid var(--rule);
+  background:var(--s1);
+}
+.rnav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.rnav-wm{font-size:19px;font-weight:600;letter-spacing:-0.03em;color:var(--t0);line-height:1}
+.rnav-wm .veo{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:var(--slate-rule);letter-spacing:0}
+.rscroll{flex:1;overflow-y:auto;padding:0 44px;scrollbar-width:thin;scrollbar-color:var(--rule) transparent;min-height:0}
+.rscroll::-webkit-scrollbar{width:3px}
+.rscroll::-webkit-scrollbar-thumb{background:var(--rule);border-radius:2px}
+.form-inner{max-width:400px;width:100%;margin:0 auto;padding:233px 0 40px}
+
+/* Mode toggle */
+.mode-wrap{display:flex;background:var(--s0);border:1px solid var(--rule);border-radius:10px;padding:3px;margin-bottom:28px}
+.mpill{flex:1;padding:8px 10px;border:none;border-radius:8px;font-family:'Outfit';font-size:12.5px;font-weight:400;color:var(--t2);background:transparent;cursor:pointer;transition:all .18s}
+.mpill.on{background:var(--s1);color:var(--t0);font-weight:500;box-shadow:0 1px 4px rgba(14,20,32,.10)}
+
+/* Header */
+.ftitle{font-size:21px;font-weight:600;letter-spacing:-0.03em;color:var(--t0);margin-bottom:3px}
+.fsub{font-size:12.5px;font-weight:300;color:var(--t2);margin-bottom:6px}
+.fsub a{color:var(--amber);text-decoration:none;font-weight:400}
+.fsub a:hover{text-decoration:underline}
+
+/* Value hook */
+.vhook{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:var(--t3);margin:18px 0 13px;display:flex;align-items:center;gap:8px}
+.vhook::before,.vhook::after{content:'';flex:1;height:1px;background:var(--rule)}
+
+/* Banner */
+.banner{display:none;align-items:flex-start;gap:9px;padding:10px 12px;border-radius:8px;margin-bottom:14px;border:1px solid rgba(184,64,32,.2);background:var(--signal-bg)}
+.banner.show{display:flex}
+.banner.info{background:var(--amber-bg);border-color:var(--amber-rule)}
+.bmsg{font-size:12px;font-weight:300;color:var(--signal);line-height:1.5}
+.banner.info .bmsg{color:var(--amber)}
+
+/* Google button */
+.gbtn{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;padding:12px 20px;border:1.5px solid var(--rule);border-radius:10px;background:var(--s1);font-family:'Outfit';font-size:14px;font-weight:500;color:var(--t0);cursor:pointer;transition:all .15s;position:relative;overflow:hidden}
+.gbtn:hover{border-color:#4285F4;background:#F8FBFF;transform:translateY(-1px);box-shadow:0 4px 16px rgba(66,133,244,.13)}
+.gbtn:active{transform:translateY(0);box-shadow:none}
+.gbtn.init,.gbtn:disabled{opacity:.52;cursor:wait;pointer-events:none}
+.gbtn.going{opacity:.7;pointer-events:none}
+.gbtn.going::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:#4285F4;animation:bar 1.2s ease infinite}
+
+/* Divider */
+.divider{display:flex;align-items:center;gap:12px;margin:20px 0 18px}
+.dline{flex:1;height:1px;background:var(--rule)}
+.dtxt{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:var(--t3);white-space:nowrap}
+
+/* Fields */
+.fcols{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.field{margin-bottom:12px}
+.fhdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:5px}
+.flbl{font-size:11px;font-weight:500;color:var(--t1);letter-spacing:.01em;display:block;margin-bottom:5px}
+.ffgt{font-size:11px;font-weight:300;color:var(--t2);text-decoration:none;transition:color .12s}
+.ffgt:hover{color:var(--amber)}
+.fwrap{position:relative}
+.finput{width:100%;padding:10px 13px;border:1.5px solid var(--rule);border-radius:8px;background:var(--s1);font-family:'Outfit';font-size:13px;font-weight:300;color:var(--t0);outline:none;transition:all .14s}
+.finput::placeholder{color:var(--t3)}
+.finput:focus{border-color:var(--slate-mid);box-shadow:0 0 0 3px rgba(30,45,74,.07)}
+.finput.err{border-color:var(--signal);box-shadow:0 0 0 3px rgba(184,64,32,.07)}
+.finput.ok{border-color:var(--green)}
+.peye{position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--t3);display:flex;align-items:center;padding:3px;transition:color .12s}
+.peye:hover{color:var(--t1)}
+.sbar{display:flex;gap:3px;margin-top:5px;height:3px}
+.sb{flex:1;border-radius:2px;background:var(--rule);transition:background .3s}
+.sb.w{background:var(--signal)}.sb.f{background:var(--amber)}.sb.g{background:var(--amber-light)}.sb.s{background:var(--green)}
+
+/* Terms */
+.terms{display:flex;align-items:flex-start;gap:8px;margin:4px 0 14px}
+.tck{width:15px;height:15px;border-radius:3px;border:1.5px solid var(--rule);background:var(--s1);flex-shrink:0;cursor:pointer;margin-top:1px;appearance:none;-webkit-appearance:none;transition:all .12s;position:relative}
+.tck:checked{background:var(--slate);border-color:var(--slate)}
+.tck:checked::after{content:'';position:absolute;top:2px;left:4px;width:4px;height:7px;border:1.5px solid #fff;border-top:none;border-left:none;transform:rotate(45deg)}
+.ttxt{font-size:11px;font-weight:300;color:var(--t2);line-height:1.55}
+.ttxt a{color:var(--amber);text-decoration:none}
+.ttxt a:hover{text-decoration:underline}
+
+/* Submit */
+.sbtn{width:100%;padding:12px;border:none;border-radius:9px;background:var(--slate);color:#F4F6FA;font-family:'Outfit';font-size:13.5px;font-weight:500;cursor:pointer;transition:all .15s;letter-spacing:.01em;display:flex;align-items:center;justify-content:center;gap:8px}
+.sbtn:hover:not(:disabled){background:var(--slate-mid);transform:translateY(-1px);box-shadow:0 4px 16px rgba(14,20,32,.20)}
+.sbtn:disabled{opacity:.52;cursor:not-allowed;transform:none}
+.sbtn.going::after{content:'';width:15px;height:15px;border-radius:50%;border:2px solid rgba(244,246,250,.3);border-top-color:#F4F6FA;animation:spin .7s linear infinite}
+
+/* Phone */
+.phform{display:none}
+
+/* Success */
+.success{display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:48px 0}
+.success.show{display:flex}
+.sring{width:56px;height:56px;border-radius:50%;background:var(--green-bg);border:1px solid rgba(22,163,74,.22);display:flex;align-items:center;justify-content:center;margin-bottom:16px;color:var(--green)}
+.stitle{font-size:18px;font-weight:600;letter-spacing:-0.02em;color:var(--t0);margin-bottom:6px}
+.ssub{font-size:13px;font-weight:300;color:var(--t2);line-height:1.6;max-width:240px}
+
+/* Footer */
+.rfoot{padding:11px 44px;border-top:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;background:var(--s1);flex-shrink:0}
+.fcopy{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.06em;color:var(--t3)}
+.flinks{display:flex;gap:16px}
+.flinks a{font-size:11px;font-weight:300;color:var(--t3);text-decoration:none;transition:color .12s}
+.flinks a:hover{color:var(--t1)}
+
+/* Animations */
+@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes bar{0%{transform:scaleX(0);transform-origin:left}50%{transform:scaleX(1);transform-origin:left}51%{transform-origin:right}100%{transform:scaleX(0);transform-origin:right}}
+
+@media(max-width:800px){
+  .page{grid-template-columns:1fr}
+  .left{display:none}
+  .right{border-left:none}
+  .form-inner{padding:40px 0}
+}
+</style>
+</head>
+<body>
+
+<script>
+let mode = 'in';
+function setMode(m) {
+  mode = m;
+  const b = document.getElementById('banner');
+  if (b) b.classList.remove('show','info');
+  document.querySelectorAll('.mpill').forEach(p => p.classList.toggle('on', p.dataset.m === m));
+  const up = m === 'up', ph = m === 'ph';
+  document.querySelectorAll('.up-only').forEach(el => el.style.display = up ? '' : 'none');
+  document.querySelectorAll('.in-only').forEach(el => el.style.display = up ? 'none' : '');
+  document.querySelectorAll('.phform').forEach(el => el.style.display = ph ? '' : 'none');
+  document.querySelectorAll('.emform').forEach(el => el.style.display = ph ? 'none' : '');
+  document.querySelectorAll('.google-row').forEach(el => el.style.display = ph ? 'none' : '');
+  document.querySelectorAll('.divider').forEach(el => el.style.display = ph ? 'none' : '');
+  document.querySelectorAll('.vhook').forEach(el => el.style.display = ph ? 'none' : '');
+  const fi = document.querySelector('.form-inner');
+  if (fi) fi.style.paddingTop = up ? '100px' : '200px';
+  const tt = document.getElementById('ftitle');
+  const fs = document.getElementById('fsub');
+  const sb = document.getElementById('sbtn');
+  if (tt) tt.textContent = {in:'Welcome back', up:'Create account', ph:'Sign in with phone'}[m];
+  if (fs) fs.innerHTML = {
+    in:  "No account? <a href='#' onclick=\"setMode('up');return false\">Start free</a>",
+    up:  "Have an account? <a href='#' onclick=\"setMode('in');return false\">Sign in</a>",
+    ph:  "<a href='#' onclick=\"setMode('in');return false\">&larr; Back to email</a>",
+  }[m];
+  if (sb) sb.textContent = {in:'Sign in to Preveo', up:'Create my account', ph:'Send code'}[m];
+}
+function strength(v) {
+  let n=0;
+  if(v.length>=8)n++; if(/[A-Z]/.test(v))n++;
+  if(/[0-9]/.test(v))n++; if(/[^A-Za-z0-9]/.test(v))n++;
+  const cls=['','w','f','g','s'];
+  document.querySelectorAll('.sb').forEach((b,i)=>{b.className='sb';if(i<n)b.classList.add(cls[n]);});
+}
+function googleSign()  { showErr('Firebase loading — try again in a moment.'); }
+function emailIn()     { showErr('Firebase loading — try again in a moment.'); }
+function emailUp()     { showErr('Firebase loading — try again in a moment.'); }
+function phoneSend()   { showErr('Firebase loading — try again in a moment.'); }
+function phoneVerify() { showErr('Firebase loading — try again in a moment.'); }
+function forgot()      { showErr('Firebase loading — try again in a moment.'); }
+function handleSubmit(){ if(mode==='in')emailIn(); else if(mode==='up')emailUp(); else phoneSend(); }
+function showErr(msg) {
+  const b=document.getElementById('banner');
+  if(!b)return;
+  b.querySelector('.bmsg').textContent=msg;
+  b.classList.remove('info');b.classList.add('show');
+}
+function showInfo(msg) {
+  const b=document.getElementById('banner');
+  if(!b)return;
+  b.querySelector('.bmsg').textContent=msg;
+  b.classList.add('show','info');
+}
+document.addEventListener('DOMContentLoaded',()=>setMode('in'));
+</script>
+
+<script type="module">
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
+import {
+  getAuth,onAuthStateChanged,signInWithPopup,signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,updateProfile,sendEmailVerification,
+  sendPasswordResetEmail,GoogleAuthProvider,RecaptchaVerifier,signInWithPhoneNumber,
+} from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
+
+const firebaseConfig = {
+  apiKey:            "AIzaSyCC1fYbQSlcXnN7xapG4XRXtmdcSkRj-VA",
+  authDomain:        "preveo-e6934.firebaseapp.com",
+  projectId:         "preveo-e6934",
+  storageBucket:     "preveo-e6934.firebasestorage.app",
+  messagingSenderId: "326652069193",
+  appId:             "1:326652069193:web:bdac0d9198df36284b8698",
+};
+
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
+const gProv=new GoogleAuthProvider();
+gProv.addScope('profile');gProv.addScope('email');
+
+const $=id=>document.getElementById(id);
+const clr=()=>{const b=$('banner');if(b)b.classList.remove('show','info');};
+const setGoing=(btn,on)=>{btn.disabled=on;btn.classList.toggle('going',on);};
+
+function friendly(code){
+  return ({
+    'auth/user-not-found':'No account found with this email.',
+    'auth/wrong-password':'Incorrect password.',
+    'auth/invalid-credential':'Incorrect email or password.',
+    'auth/email-already-in-use':'An account with this email already exists.',
+    'auth/weak-password':'Password must be at least 6 characters.',
+    'auth/invalid-email':'Enter a valid email address.',
+    'auth/popup-closed-by-user':'Sign-in window closed — please try again.',
+    'auth/popup-blocked':'Allow popups for this site and try again.',
+    'auth/account-exists-with-different-credential':'This email uses a different sign-in method.',
+    'auth/network-request-failed':'Network error. Check your connection.',
+    'auth/too-many-requests':'Too many attempts. Wait a few minutes.',
+    'auth/user-disabled':'This account has been disabled.',
+    'auth/invalid-phone-number':'Enter a valid phone number with country code.',
+    'auth/invalid-verification-code':'Incorrect code. Check and try again.',
+  })[code]||'Something went wrong. Please try again.';
+}
+
+function showSuccess(user){
+  $('fbody').style.display='none';
+  const s=$('success');
+  s.querySelector('.ssub').textContent=`Signed in as ${user.email||user.displayName||'user'}. Redirecting...`;
+  s.classList.add('show');
+  setTimeout(()=>window.location.href="/app.html",1200);
+}
+
+onAuthStateChanged(auth,u=>{if(u)showSuccess(u);});
+
+async function _googleSign(){
+  clr();const btn=$('google-btn');setGoing(btn,true);
+  try{showSuccess((await signInWithPopup(auth,gProv)).user);}
+  catch(e){showErr(friendly(e.code));setGoing(btn,false);}
+}
+async function _emailIn(){
+  clr();
+  const email=$('email').value.trim(),pw=$('pw').value;
+  if(!email||!pw){showErr('Email and password are required.');return;}
+  const btn=$('sbtn');setGoing(btn,true);
+  try{showSuccess((await signInWithEmailAndPassword(auth,email,pw)).user);}
+  catch(e){showErr(friendly(e.code));setGoing(btn,false);}
+}
+async function _emailUp(){
+  clr();
+  const fn=$('fn').value.trim(),ln=$('ln').value.trim();
+  const email=$('email').value.trim(),pw=$('pw').value,pw2=$('pw2').value;
+  const terms=$('terms').checked;
+  if(!fn||!ln){showErr('Enter your full name.');return;}
+  if(!email){showErr('Email address is required.');return;}
+  if(pw.length<6){showErr('Password must be at least 6 characters.');return;}
+  if(pw!==pw2){showErr("Passwords don't match.");return;}
+  if(!terms){showErr('Accept the Terms to continue.');return;}
+  const btn=$('sbtn');setGoing(btn,true);
+  try{
+    const c=await createUserWithEmailAndPassword(auth,email,pw);
+    await updateProfile(c.user,{displayName:`${fn} ${ln}`});
+    await sendEmailVerification(c.user);
+    showSuccess(c.user);
+  }catch(e){showErr(friendly(e.code));setGoing(btn,false);}
+}
+let _confirm=null;
+async function _phoneSend(){
+  clr();const num=$('phnum').value.trim();
+  if(!num){showErr('Enter a phone number.');return;}
+  if(!window._rcap)window._rcap=new RecaptchaVerifier(auth,'recaptcha',{size:'invisible'});
+  try{
+    _confirm=await signInWithPhoneNumber(auth,num,window._rcap);
+    $('phs1').style.display='none';$('phs2').style.display='';
+    showInfo('Code sent. Check your messages.');
+  }catch(e){showErr(friendly(e.code));}
+}
+async function _phoneVerify(){
+  clr();const code=$('phcode').value.trim();
+  if(!code||!_confirm){showErr('Enter the 6-digit code.');return;}
+  try{showSuccess((await _confirm.confirm(code)).user);}
+  catch(e){showErr(friendly(e.code));}
+}
+async function _forgot(){
+  const email=$('email').value.trim();
+  if(!email){showErr('Enter your email first, then click Forgot password.');return;}
+  try{await sendPasswordResetEmail(auth,email);showInfo(`Reset link sent to ${email}.`);}
+  catch(e){showErr(friendly(e.code));}
+}
+
+window.googleSign=_googleSign;window.emailIn=_emailIn;window.emailUp=_emailUp;
+window.phoneSend=_phoneSend;window.phoneVerify=_phoneVerify;window.forgot=_forgot;
+window.handleSubmit=()=>{if(mode==='in')_emailIn();else if(mode==='up')_emailUp();else _phoneSend();};
+
+const gbtn=document.getElementById('google-btn');
+if(gbtn)gbtn.classList.remove('init');
+</script>
+
+<div class="page">
+
+  <!-- LEFT -->
+  <div class="left">
+    <div class="ldots"></div>
+    <div class="lglow"></div>
+    <div class="lglow2"></div>
+    <div class="horizon"></div>
+
+    <div class="left-logo">
+      <svg width="34" height="25" viewBox="0 0 44 32" fill="none">
+        <defs><clipPath id="sc"><rect x="0" y="0" width="44" height="22"/></clipPath></defs>
+        <circle cx="22" cy="19" r="13" fill="#F4F6FA" clip-path="url(#sc)"/>
+        <line x1="0" y1="22" x2="44" y2="22" stroke="rgba(200,120,32,0.55)" stroke-width="1"/>
+      </svg>
+      <div class="wm">Pre<span class="veo">veo</span></div>
+    </div>
+
+    <div class="left-body">
+
+      <h1 class="headline">
+        A plan that thinks.<br>
+        <span class="serif">A system that holds.</span>
+      </h1>
+
+      <div class="tcard">
+        <p class="tquote">"It feels like a coach who's always watching."</p>
+        <div class="tauthor">
+          <div class="tavatar">KL</div>
+          <div>
+            <div class="tname">Kai Larsen</div>
+            <div class="trole">13-Week Lean Reset &middot; &minus;14 lbs</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="stats">
+      <div class="stat" style="border-right:1px solid rgba(255,255,255,.06);padding-right:20px">
+        <div class="sv">12<span>k+</span></div><div class="sl">Active users</div>
+      </div>
+      <div class="stat" style="padding-left:20px;border-right:1px solid rgba(255,255,255,.06);padding-right:20px">
+        <div class="sv">94<span>%</span></div><div class="sl">Adherence avg.</div>
+      </div>
+      <div class="stat" style="padding-left:20px;border-right:1px solid rgba(255,255,255,.06);padding-right:20px">
+        <div class="sv">13<span>wk</span></div><div class="sl">Program cycles</div>
+      </div>
+      <div class="stat" style="padding-left:20px">
+        <div class="sv">4.9<span>&#9733;</span></div><div class="sl">Outcome score</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="right">
+    <nav class="rnav">
+      <a class="rnav-logo" href="/">
+        <svg width="28" height="20" viewBox="0 0 44 32" fill="none">
+          <defs><clipPath id="nc"><rect x="0" y="0" width="44" height="22"/></clipPath></defs>
+          <circle cx="22" cy="19" r="13" fill="#1E2D4A" clip-path="url(#nc)"/>
+          <line x1="0" y1="22" x2="44" y2="22" stroke="rgba(200,120,32,0.6)" stroke-width="1"/>
+        </svg>
+        <div class="rnav-wm">Pre<span class="veo">veo</span></div>
+      </a>
+    </nav>
+    <div class="rscroll">
+      <div class="form-inner">
+        <div class="success" id="success">
+          <div class="sring">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="stitle">You're in</div>
+          <div class="ssub">Redirecting to your plan&hellip;</div>
+        </div>
+
+        <div id="fbody">
+          <div id="ftitle" class="ftitle">Welcome back</div>
+          <div id="fsub" class="fsub">No account? <a href="#" onclick="setMode('up');return false">Start free</a></div>
+
+          <div class="banner" id="banner">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0;margin-top:1px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <div class="bmsg"></div>
+          </div>
+
+          <div class="vhook">Join 12,000+ people planning with precision</div>
+
+          <div class="google-row">
+            <button class="gbtn" id="google-btn" onclick="googleSign()">
+              <svg width="18" height="18" viewBox="0 0 24 24">
+                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+              </svg>
+              Continue with Google
+            </button>
+          </div>
+
+          <div class="divider">
+            <div class="dline"></div>
+            <span class="dtxt">or use email</span>
+            <div class="dline"></div>
+          </div>
+
+          <div class="phform">
+            <div id="phs1">
+              <div class="field">
+                <label class="flbl" for="phnum">Phone number</label>
+                <input class="finput" type="tel" id="phnum" placeholder="+1 555 000 0000" autocomplete="tel">
+              </div>
+              <div id="recaptcha"></div>
+              <button class="sbtn" onclick="phoneSend()">Send code</button>
+            </div>
+            <div id="phs2" style="display:none">
+              <div class="field">
+                <label class="flbl" for="phcode">Verification code</label>
+                <input class="finput" type="text" id="phcode" placeholder="000000" inputmode="numeric" maxlength="6" style="letter-spacing:.25em;font-size:18px;text-align:center">
+              </div>
+              <button class="sbtn" onclick="phoneVerify()">Verify &amp; sign in</button>
+            </div>
+          </div>
+
+          <div class="emform">
+            <div class="fcols up-only" style="display:none">
+              <div class="field">
+                <label class="flbl" for="fn">First name</label>
+                <input class="finput" type="text" id="fn" placeholder="Jared" autocomplete="given-name">
+              </div>
+              <div class="field">
+                <label class="flbl" for="ln">Last name</label>
+                <input class="finput" type="text" id="ln" placeholder="R." autocomplete="family-name">
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="flbl" for="email">Email address</label>
+              <input class="finput" type="email" id="email" placeholder="you@example.com" autocomplete="email">
+            </div>
+
+            <div class="field">
+              <div class="fhdr">
+                <label class="flbl" for="pw" style="margin-bottom:0">Password</label>
+                <a class="ffgt in-only" href="#" onclick="forgot();return false">Forgot password?</a>
+              </div>
+              <div class="fwrap" style="margin-top:5px">
+                <input class="finput" type="password" id="pw" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;" autocomplete="current-password" oninput="strength(this.value)">
+                <button class="peye" type="button" onclick="const i=document.getElementById('pw');i.type=i.type==='password'?'text':'password'">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                </button>
+              </div>
+              <div class="sbar up-only" style="display:none;margin-top:5px">
+                <div class="sb"></div><div class="sb"></div><div class="sb"></div><div class="sb"></div>
+              </div>
+            </div>
+
+            <div class="field up-only" style="display:none">
+              <label class="flbl" for="pw2">Confirm password</label>
+              <div class="fwrap" style="margin-top:5px">
+                <input class="finput" type="password" id="pw2" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;" autocomplete="new-password" oninput="const p=document.getElementById('pw').value;this.classList.toggle('ok',this.value===p&&p.length>0);this.classList.toggle('err',this.value!==p&&this.value.length>0);">
+                <button class="peye" type="button" onclick="const i=document.getElementById('pw2');i.type=i.type==='password'?'text':'password'">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="terms up-only" style="display:none">
+              <input class="tck" type="checkbox" id="terms">
+              <label class="ttxt" for="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>. Preveo builds plans around my stated goals &mdash; not medical advice.</label>
+            </div>
+
+            <button class="sbtn" id="sbtn" onclick="handleSubmit()">Sign in to Preveo</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="rfoot">
+      <div class="fcopy">&#169; 2026 Preveo</div>
+      <div class="flinks"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Help</a></div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

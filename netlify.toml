@@ -1,0 +1,22 @@
+[build]
+  command = "astro build"
+  publish = "dist"
+
+[dev]
+  port = 3000
+
+# Serve real HTML pages directly
+[[redirects]]
+  from = "/"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/login"
+  to = "/login.html"
+  status = 200
+
+[[redirects]]
+  from = "/app"
+  to = "/app.html"
+  status = 200
