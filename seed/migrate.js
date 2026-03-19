@@ -64,6 +64,24 @@ async function migrate() {
   )`;
   console.log('✓ events table');
 
+  await sql`CREATE TABLE IF NOT EXISTS conversations (
+    id         UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    user_id    UUID REFERENCES users(id) ON DELETE CASCADE,
+    title      TEXT NOT NULL DEFAULT 'New conversation',
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW()
+  )`;
+  console.log('✓ conversations table');
+
+  await sql`CREATE TABLE IF NOT EXISTS messages (
+    id              UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    conversation_id UUID REFERENCES conversations(id) ON DELETE CASCADE,
+    role            TEXT CHECK (role IN ('user','assistant')) NOT NULL,
+    content         TEXT NOT NULL,
+    created_at      TIMESTAMPTZ DEFAULT NOW()
+  )`;
+  console.log('✓ messages table');
+
   console.log('\nMigration complete.');
 }
 

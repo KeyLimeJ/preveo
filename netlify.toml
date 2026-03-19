@@ -5,7 +5,6 @@
 [dev]
   port = 3000
 
-# Serve real HTML pages directly
 [[redirects]]
   from = "/"
   to = "/index.html"

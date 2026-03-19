@@ -1,0 +1,42 @@
+---
+---
+<aside class="sidebar" id="sidebar">
+  <button class="sidebar-edge-toggle" id="sidebar-toggle" title="Toggle sidebar">
+    <svg class="icon-expanded" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+    <svg class="icon-collapsed" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M9 18l6-6-6-6"/></svg>
+  </button>
+  <div class="sidebar-inner">
+    <div class="sidebar-top">
+      <button class="new-chat-btn">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+        <span>New conversation</span>
+      </button>
+    </div>
+    <div class="sidebar-label">Recent</div>
+    <div class="chat-list"></div>
+  </div>
+  <div class="sidebar-nav">
+    <div class="sidebar-nav-profile">
+      <div class="profile-upload-wrap" id="avatar-btn">
+        <div class="pb-circle" id="pb-circle"><span class="pb-initials"></span></div>
+        <canvas class="pb-canvas" id="pb-canvas"></canvas>
+      </div>
+      <div class="sidebar-avatar-dropdown" id="avatar-dropdown">
+        <div class="avatar-dropdown-user">
+          <div class="avatar-dropdown-name">—</div>
+          <div class="avatar-dropdown-email">—</div>
+        </div>
+        <div class="avatar-dropdown-items">
+          <div class="avatar-dropdown-item"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Account settings</div>
+          <div class="avatar-dropdown-item"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/></svg>Preferences</div>
+          <div class="avatar-dropdown-divider"></div>
+          <div class="avatar-dropdown-item logout"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Log out</div>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar-nav-info">
+      <div class="sidebar-nav-name">—</div>
+      <div class="sidebar-nav-status"><span class="sidebar-nav-dot"></span>Active</div>
+    </div>
+  </div>
+</aside>

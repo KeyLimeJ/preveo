@@ -63,12 +63,8 @@ const PREVEO_CONTENT = {
 
     // Social proof bar
     proof: {
-      avatars: ["KL", "MR", "SA", "JT", "+"],
-      text: [
-        "Trusted by ",
-        { t: "12,000+", c: "white" },
-        " goal-driven people",
-      ],
+      avatars: [],
+      text: [],
     },
   },
 
@@ -104,12 +100,8 @@ const PREVEO_CONTENT = {
   },
 
   // ── STATS BAND ────────────────────────────────────────────
-  stats: [
-    { number: "94", unit: "%",   desc: "Average plan adherence" },
-    { number: "13", unit: "wk",  desc: "Structured program cycles" },
-    { number: "12", unit: "k+",  desc: "Active users worldwide" },
-    { number: "4.9", unit: "★",  desc: "Average outcome score" },
-  ],
+  // TODO: Replace with real metrics once available
+  stats: [],
 
   // ── FEATURES ──────────────────────────────────────────────
   features: {
@@ -187,6 +179,7 @@ const PREVEO_CONTENT = {
   },
 
   // ── TESTIMONIALS ──────────────────────────────────────────
+  // TODO: Replace with real user testimonials
   testimonials: {
     eyebrow: "Real outcomes",
     headline: [
@@ -194,29 +187,7 @@ const PREVEO_CONTENT = {
       "\n",
       { t: "follow through.", c: "muted" },
     ],
-    items: [
-      {
-        initials: "KL",
-        name:     "Kai Larsen",
-        role:     "13-Week Lean Reset · Week 5",
-        stars:    5,
-        quote:    "I've tried every app. Preveo is the first one that actually changes its recommendations based on what I did yesterday. It feels like a coach that's always watching.",
-      },
-      {
-        initials: "MR",
-        name:     "Maya Reyes",
-        role:     "Performance Protocol · Cycle 2",
-        stars:    5,
-        quote:    "The macro timing around training is something I never thought about until Preveo surfaced it. My recovery has improved more in 6 weeks than the past year.",
-      },
-      {
-        initials: "SA",
-        name:     "Dr. Sofia Ames",
-        role:     "Longevity Track · Month 3",
-        stars:    5,
-        quote:    "I'm a doctor and I was skeptical. But the evidence-based progressions and the honest tracking changed how I think about my own protocols. Remarkable product.",
-      },
-    ],
+    items: [],
   },
 
   // ── CTA SECTION ───────────────────────────────────────────

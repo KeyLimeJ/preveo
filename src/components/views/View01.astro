@@ -1,0 +1,88 @@
+---
+// View 01 — Contact Information
+---
+<div class="view01">
+  <div class="view01-header">
+    <div class="view01-eyebrow">Contact Information</div>
+    <div class="view01-title">Profile Details</div>
+  </div>
+
+  <div class="view01-form">
+    <div class="view01-field">
+      <label class="view01-label">Phone Number</label>
+      <div class="view01-input-wrap">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.62 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <input class="view01-input" type="tel" placeholder="+1 (555) 000-0000" id="contact-phone" />
+      </div>
+    </div>
+
+    <div class="view01-field">
+      <label class="view01-label">Email Address</label>
+      <div class="view01-input-wrap">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <input class="view01-input" type="email" placeholder="you@example.com" id="contact-email" />
+      </div>
+    </div>
+
+    <div class="view01-field">
+      <label class="view01-label">Address</label>
+      <div class="view01-input-wrap view01-textarea-wrap">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-top:3px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <textarea class="view01-input view01-textarea" placeholder="123 Main St, City, State, ZIP" id="contact-address" rows="3"></textarea>
+      </div>
+    </div>
+
+    <button class="view01-save-btn" id="view01-save">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+      Save Contact Info
+    </button>
+
+    <div class="view01-saved" id="view01-saved" style="display:none">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+      Saved
+    </div>
+  </div>
+</div>
+
+<style>
+.view01 { display: flex; flex-direction: column; gap: 20px; padding: 4px 0; }
+.view01-header { padding-bottom: 14px; border-bottom: 1px solid var(--rule-soft); }
+.view01-eyebrow { font-family: 'DM Mono', monospace; font-size: 7px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--t3); margin-bottom: 5px; }
+.view01-title { font-size: 15px; font-weight: 600; letter-spacing: -0.03em; color: var(--t0); }
+.view01-form { display: flex; flex-direction: column; gap: 14px; }
+.view01-field { display: flex; flex-direction: column; gap: 6px; }
+.view01-label { font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--t2); }
+.view01-input-wrap { display: flex; align-items: flex-start; gap: 9px; background: var(--s0); border: 1px solid var(--rule); border-radius: var(--r-md); padding: 9px 12px; transition: border-color 0.15s, box-shadow 0.15s; }
+.view01-input-wrap:focus-within { border-color: var(--slate-mid); box-shadow: 0 0 0 3px rgba(30,45,74,0.07); }
+.view01-input-wrap svg { flex-shrink: 0; color: var(--t3); margin-top: 1px; }
+.view01-input { flex: 1; border: none; background: transparent; font-family: 'Outfit', sans-serif; font-size: 13.5px; font-weight: 300; color: var(--t0); outline: none; line-height: 1.5; }
+.view01-input::placeholder { color: var(--t3); }
+.view01-textarea { resize: none; }
+.view01-textarea-wrap { align-items: flex-start; }
+.view01-save-btn { display: flex; align-items: center; justify-content: center; gap: 7px; padding: 10px 16px; border-radius: var(--r-md); border: none; background: var(--slate); color: rgba(255,255,255,0.9); font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 400; cursor: pointer; transition: all 0.15s; margin-top: 4px; }
+.view01-save-btn:hover { background: var(--slate-mid); }
+.view01-saved { display: flex; align-items: center; gap: 6px; font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--green); justify-content: center; padding: 4px 0; }
+</style>
+
+<script>
+document.getElementById('view01-save')?.addEventListener('click', () => {
+  const phone = document.getElementById('contact-phone').value;
+  const email = document.getElementById('contact-email').value;
+  const address = document.getElementById('contact-address').value;
+  // Save to localStorage for persistence
+  localStorage.setItem('contact-info', JSON.stringify({ phone, email, address }));
+  // Show saved indicator
+  const savedEl = document.getElementById('view01-saved');
+  savedEl.style.display = 'flex';
+  setTimeout(() => savedEl.style.display = 'none', 2000);
+});
+
+// Load saved data on init
+const saved = localStorage.getItem('contact-info');
+if (saved) {
+  const { phone, email, address } = JSON.parse(saved);
+  if (phone) document.getElementById('contact-phone').value = phone;
+  if (email) document.getElementById('contact-email').value = email;
+  if (address) document.getElementById('contact-address').value = address;
+}
+</script>

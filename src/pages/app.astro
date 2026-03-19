@@ -1,0 +1,26 @@
+---
+import Topbar from '../components/Topbar.astro';
+import Sidebar from '../components/Sidebar.astro';
+import ChatPanel from '../components/ChatPanel.astro';
+import ViewPanel from '../components/ViewPanel.astro';
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Preveo</title>
+  <link rel="stylesheet" href="/styles/global.css" />
+</head>
+<body>
+  <div class="app" id="app">
+    <Topbar />
+    <Sidebar />
+    <ChatPanel />
+    <div class="resize-handle" id="resize-handle"><div class="resize-grip"></div></div>
+    <ViewPanel />
+  </div>
+  <script src="/scripts/app.js" is:inline></script>
+  <script type="module" src="/scripts/auth.js" is:inline></script>
+</body>
+</html>

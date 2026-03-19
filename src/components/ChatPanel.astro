@@ -1,0 +1,76 @@
+---
+---
+<main class="chat-panel">
+  <div class="chat-title-row">
+    <div class="chat-title-wrap" id="topbar-title-wrap">
+      <button class="chat-title-btn" id="topbar-title-btn">
+        <span id="topbar-title">New conversation</span>
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="topbar-title-dropdown" id="topbar-title-dropdown">
+        <button class="ttd-item" id="ttd-star"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Star</button>
+        <button class="ttd-item" id="ttd-rename"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>Rename</button>
+        <button class="ttd-item" id="ttd-assign"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Assign to project</button>
+        <div class="ttd-divider"></div>
+        <button class="ttd-item ttd-danger" id="ttd-delete"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M9 6V4h6v2"/></svg>Delete</button>
+      </div>
+    </div>
+  </div>
+  <div class="messages">
+    <div class="chat-container">
+      <div class="empty-state">
+        <div class="empty-sun">
+          <svg width="80" height="58" viewBox="0 0 48 34" fill="none">
+            <circle cx="24" cy="24" r="13" fill="#0E1420"/>
+            <rect x="0" y="24" width="48" height="12" fill="var(--s0)"/>
+            <line x1="0" y1="24" x2="48" y2="24" stroke="var(--rule)" stroke-width="1"/>
+          </svg>
+        </div>
+        <div class="empty-heading">What's your next move?</div>
+        <div class="empty-sub">Describe a goal, event, or plan — Preveo will build around it.</div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div class="chat-bottom">
+  <div class="chips-carousel">
+    <div class="chips-carousel-inner">
+      <button class="carousel-btn" id="carousel-prev" disabled>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <div class="chips-track-wrap">
+        <div class="chips-track" id="chips-track">
+          <div class="suggestion-chip">Adjust for rest day</div>
+          <div class="suggestion-chip">Swap post-workout meal</div>
+          <div class="suggestion-chip">Week 5 summary</div>
+          <div class="suggestion-chip">Log today's intake</div>
+          <div class="suggestion-chip">Edit macro targets</div>
+          <div class="suggestion-chip">Reschedule meal</div>
+        </div>
+      </div>
+      <button class="carousel-btn" id="carousel-next">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="input-area">
+    <div class="input-wrap">
+      <textarea class="input-field" placeholder="Describe an event, ask for a plan, or adjust targets…" rows="2"></textarea>
+      <div class="input-toolbar">
+        <button class="input-tool-btn" title="Attach"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg></button>
+        <button class="input-tool-btn" title="Voice"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg></button>
+        <div class="input-model">Preveo 2.0 <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
+        <button class="send-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
+      </div>
+    </div>
+  </div>
+  <div class="ready-indicator">
+    <svg class="ready-sun" width="28" height="20" viewBox="0 0 32 22" fill="none">
+      <circle cx="16" cy="17" r="9" fill="#0E1420"/>
+      <rect x="0" y="17" width="32" height="8" fill="var(--s0)"/>
+      <line x1="0" y1="17" x2="32" y2="17" stroke="var(--rule)" stroke-width="1"/>
+    </svg>
+    <span class="ready-label">Ready</span>
+  </div>
+</div>
